@@ -7,7 +7,7 @@ namespace Filter
 {
     public class SVMProblemBuilder
     {
-        // Buduje obiekt który jest reprezentacją macierzy algorytmu SVM.
+        // Buduje obiekt, który jest reprezentacją macierzy algorytmu SVM.
         public svm_problem CreateMatrix(IEnumerable<string> x, double[] y, IReadOnlyList<string> vocabulary)
         {
             return new svm_problem

@@ -31,7 +31,7 @@ namespace Filter
             set { vocabulary = value; }
         }
 
-        // Tu odbywa się wczytywanie danych z sestawów treningowych.
+        // Tu odbywa się wczytywanie danych z zestawów treningowych.
         public SVMDataManager()
         {
             int negativeRowNumber;
@@ -53,7 +53,7 @@ namespace Filter
 
         }
 
-        // Buduje liste klasyfikacji odpowiadających jej wierzy w słowniku.
+        // Buduje listę klasyfikacji, dla odpowiadających jej wierszy w słowniku.
         public void SetClassValues(int negativeRowNumber, int positiveRowNumber)
         {
             this.classValue = new double[negativeRowNumber + positiveRowNumber];
@@ -84,7 +84,7 @@ namespace Filter
             return result.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        // Oddzielanie od siebie znaków nie alfanumerycznych i traktowanie ich jako osobne wyrazy. (Tak by np "1 = 1" było jednoznaczne z "1=1")
+        // Oddzielanie od siebie znaków niealfanumerycznych i traktowanie ich jako osobne wyrazy. (Tak by np "1 = 1" było jednoznaczne z "1=1")
         public static string SeparateNonAlphanumeric(string line)
         {
             string result = "";

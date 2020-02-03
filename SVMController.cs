@@ -17,15 +17,20 @@ namespace Filter
         // Uczenie algorytmu
         public void Train()
         {
-            // Pobieranie pobieranie danych z zestawów do trenowanie algorytmu znajduje się w konstruktorze klasy SVMDataManager ->
+            // Pobieranie danych z zestawów do trenowanie algorytmu znajduje się w konstruktorze klasy SVMDataManager ->
             SVMDataManager data = new SVMDataManager();
 
             // Tworzenie macierzy (wraz z wektorami)
             var problemBuilder = new SVMProblemBuilder();
             var problem = problemBuilder.CreateMatrix(data.RequestText, data.ClassValue, data.Vocabulary.ToList());
 
+            // Parametrem C dokonywana jest optymalizacja marginesu. Oznacza on wartość straty/kary błędnej klasyfikacji.
             const double C = 0.5;
             C_SVC model = new C_SVC(problem, KernelHelper.LinearKernel(), C);
+
+            // Dokładność liczona jest procentowo na bazie danych treningowych.
+            // Po wyznaczeniu przez algorytm najlepszej dostępnej hiperpłaszczyzny oddzielającej cechy od siebie,
+            // przez stworzony model przepuszczane są jeszcze raz dane treningowe i liczony jest odsetek błędnych klasyfikacji na tej podstawie.
             accuracy = model.GetCrossValidationAccuracy(100);
 
             // Export modelu oraz słownika 
